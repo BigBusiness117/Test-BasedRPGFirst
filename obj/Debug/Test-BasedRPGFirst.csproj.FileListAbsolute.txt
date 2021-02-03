@@ -1,0 +1,7 @@
+C:\Users\High End-PC\source\repos\Test-BasedRPGFirst\bin\Debug\Test-BasedRPGFirst.exe.config
+C:\Users\High End-PC\source\repos\Test-BasedRPGFirst\bin\Debug\Test-BasedRPGFirst.exe
+C:\Users\High End-PC\source\repos\Test-BasedRPGFirst\bin\Debug\Test-BasedRPGFirst.pdb
+C:\Users\High End-PC\source\repos\Test-BasedRPGFirst\obj\Debug\Test-BasedRPGFirst.csprojAssemblyReference.cache
+C:\Users\High End-PC\source\repos\Test-BasedRPGFirst\obj\Debug\Test-BasedRPGFirst.csproj.CoreCompileInputs.cache
+C:\Users\High End-PC\source\repos\Test-BasedRPGFirst\obj\Debug\Test-BasedRPGFirst.exe
+C:\Users\High End-PC\source\repos\Test-BasedRPGFirst\obj\Debug\Test-BasedRPGFirst.pdb
