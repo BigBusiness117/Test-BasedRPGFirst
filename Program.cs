@@ -10,9 +10,22 @@ namespace Test_BasedRPGFirst
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("hello");
+            Player player = new Player();
+            Map map = new Map();
+            Enemy enemy = new Enemy();
+            
+            while (true)
+            {
+                
 
+                map.border();
+                enemy.enemyMove();
+                player.drawPlayer();
+                player.movePlayer();
+                
+            }
             Console.ReadKey();
+
         }
     }
 }
