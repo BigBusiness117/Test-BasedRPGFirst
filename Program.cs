@@ -18,7 +18,7 @@ namespace Test_BasedRPGFirst
             {
                 
 
-                map.border();
+                //map.border();
                 player.drawPlayer();
                 enemy.enemyMove();
                 player.movePlayer();

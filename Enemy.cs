@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Test_BasedRPGFirst
 {
-    class Enemy
+    class Enemy 
     {
         int EloctaionX;
         int EloctaionY;
@@ -20,6 +20,7 @@ namespace Test_BasedRPGFirst
         }
         public void enemyMove()
         {
+            
             Random rd = new Random();
             int num = rd.Next(10, 12);
             if (turn)

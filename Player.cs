@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Test_BasedRPGFirst
 {
-    class Player
+    class Player : Map
     {
-        public int locationX;
-        public int locationY;
-        private bool moving;
+        public int locationX=3;
+        public int locationY=3;
+        public bool moving = true;
         public int origWidth;
         public int origHeight;
         public string player1;
@@ -27,20 +27,19 @@ namespace Test_BasedRPGFirst
             origHeight = Console.WindowHeight;
             origWidth = Console.WindowWidth;
             player1 = "@";
-            
-        }
+                 }
         public void drawPlayer()
         {
           
 
             PlayerOne = new string[] { "@" };
-            if (locationX >= origWidth - 1) { locationX = origWidth - 1; }
-            if (locationX <= 1) { locationX = 1; }
-            if (locationY >= origHeight - 1) { locationY = origHeight - 1; }
-            if (locationY <= 1) { locationY = 1; }
-            Console.SetCursorPosition(locationX, locationY);
+           // if (locationX >= origWidth - 1) { locationX = origWidth - 1; }
+            //if (locationX <= 1) { locationX = 1; }
+            //if (locationY >= origHeight - 1) { locationY = origHeight - 1; }
+            //if (locationY <= 1) { locationY = 1; }
+
+            Console.SetCursorPosition(locationX , locationY);
             
-            Console.Write(player1);
 
 
 
@@ -51,25 +50,58 @@ namespace Test_BasedRPGFirst
         }
         public void movePlayer()
         {
-                Console.WriteLine("");
-            Console.SetCursorPosition(locationX, locationY);
+            Console.SetCursorPosition(0, 0);
+
+            border();
+            Console.SetCursorPosition(20, 20);
+
+            Console.WriteLine("----" +"X"+ locationX +"-Y"+ locationY +"-----");
+            Console.WriteLine(mapE[locationY ,locationX]);
+            Console.SetCursorPosition(locationX , locationY );
+            Console.Write(player1);
+            //string[,] mapE = new string[65,16];
+                      //   Console.WriteLine("");
+                //Console.WriteLine("hello"+mapE[locationY +1, locationX]+"hello");
             ConsoleKeyInfo input;
             input = Console.ReadKey(true);
-            if (input.KeyChar == 'w')
+           
+                
+            
+            
+                
+            
+            if (input.KeyChar == 'w' )
             {
-                locationY = locationY - 1;
-                
-                
-                
+                if (mapE[locationY - 1 , locationX ] == "x")
+                {
+                    Console.WriteLine(mapE[locationY , locationX]);
+                    moving = false;
+                    
+                }
+                else if (mapE[locationY  , locationX ] == "." && moving == true)
+                {
+                    locationY = locationY - 1;
+                    
+                }
                // Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
-                //Console.Write("");
+               //Console.Write("");
                 Console.Clear();
             }
             else if (input.KeyChar == 's')
             {
-              
+                if (mapE[locationY +1 , locationX] == "x")
+                {
+                   
+                    moving = false;
 
-                locationY = locationY + 1;
+                }
+                else if (mapE[locationY , locationX] == "." && moving == true)
+                {
+                    
+                    locationY = locationY + 1;
+
+                }
+
                 
                
                 // Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
@@ -78,9 +110,19 @@ namespace Test_BasedRPGFirst
             }
             else if (input.KeyChar == 'a')
             {
-               
 
-                locationX = locationX - 1;
+                if (mapE[locationY , locationX -1 ] == "x")
+                {
+                    //Console.WriteLine(mapE[locationY + 1, locationX]);
+                    moving = false;
+
+                }
+                else if (mapE[locationY , locationX] == "." && moving == true)
+                {
+                    
+                    locationX = locationX - 1;
+
+                }
                 
                 
                 // Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
@@ -91,10 +133,20 @@ namespace Test_BasedRPGFirst
             }
             else if (input.KeyChar == 'd')
             {
-               
+                if (mapE[locationY  , locationX +1] == "x")
+                {
+                    //Console.WriteLine(mapE[locationY , locationX ]);
+                    moving = false;
 
-                locationX = locationX + 1;
-                Console.Write("@");
+                }
+
+                else if (mapE[locationY  , locationX] == "." && moving == true)
+                {
+                    locationX = locationX + 1;
+                    
+
+                }
+                //Console.Write("@");
                 
                 //  Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
                 //Console.Write("");
@@ -102,8 +154,15 @@ namespace Test_BasedRPGFirst
                 Console.Clear();
 
             }
+            moving = true;
 
         }
+            public void getTile(int x, int y)
+            {
+           
+
+            //return map[y],[x];
+            }   
 
     }
 }
