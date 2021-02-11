@@ -16,6 +16,8 @@ namespace Test_BasedRPGFirst
         public string player1;
         public int playerPos;
         public string[] PlayerOne;
+        public string nextPage;
+        public List<string> list; 
         public Player()
         {
 
@@ -25,10 +27,11 @@ namespace Test_BasedRPGFirst
             origHeight = Console.WindowHeight;
             origWidth = Console.WindowWidth;
             player1 = "@";
-
+            
         }
         public void drawPlayer()
         {
+          
 
             PlayerOne = new string[] { "@" };
             if (locationX >= origWidth - 1) { locationX = origWidth - 1; }
@@ -36,8 +39,10 @@ namespace Test_BasedRPGFirst
             if (locationY >= origHeight - 1) { locationY = origHeight - 1; }
             if (locationY <= 1) { locationY = 1; }
             Console.SetCursorPosition(locationX, locationY);
-            Console.Write(PlayerOne[0]);
-           
+            
+            Console.Write(player1);
+
+
 
             //Console.WriteLine(locationX + "and" + locationY);
             //Console.WriteLine(origWidth + "and" + origHeight);
@@ -47,28 +52,53 @@ namespace Test_BasedRPGFirst
         public void movePlayer()
         {
                 Console.WriteLine("");
+            Console.SetCursorPosition(locationX, locationY);
             ConsoleKeyInfo input;
             input = Console.ReadKey(true);
             if (input.KeyChar == 'w')
             {
                 locationY = locationY - 1;
+                
+                
+                
+               // Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+                //Console.Write("");
                 Console.Clear();
             }
             else if (input.KeyChar == 's')
             {
+              
+
                 locationY = locationY + 1;
-                Console.Clear();
+                
+               
+                // Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+                 Console.Clear();
 
             }
             else if (input.KeyChar == 'a')
             {
+               
+
                 locationX = locationX - 1;
+                
+                
+                // Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+                // Console.Write("");
+
                 Console.Clear();
 
             }
             else if (input.KeyChar == 'd')
             {
+               
+
                 locationX = locationX + 1;
+                Console.Write("@");
+                
+                //  Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+                //Console.Write("");
+
                 Console.Clear();
 
             }
