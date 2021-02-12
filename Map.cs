@@ -17,7 +17,8 @@ namespace Test_BasedRPGFirst
 
         public void border()
         {
-         mapE = new string[,] {
+
+            mapE = new string[,] {
         {"x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x",},
         {"x",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","x",},
         {"x",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","x",},
@@ -36,6 +37,12 @@ namespace Test_BasedRPGFirst
         {"x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x",},
 
         };
+        }
+
+        public void DrawBorder()
+        {
+            border();
+  
             int MaxI = mapE.GetLength(0) - 1;
             int MaxJ = mapE.GetLength(1) - 1;
             for (int i = 0; i <= MaxI; i++)
@@ -49,5 +56,9 @@ namespace Test_BasedRPGFirst
 
             }
         }
+
+
+
     }
 }
+

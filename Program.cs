@@ -13,19 +13,18 @@ namespace Test_BasedRPGFirst
             Player player = new Player();
             Map map = new Map();
             Enemy enemy = new Enemy();
+            GameCharacter gameCharacter = new GameCharacter();
+
             
             while (true)
             {
-                
-
-                //map.border();
+                map.DrawBorder();
+                gameCharacter.CheckEnemy(player.Px, enemy.Ex, player.Py, enemy.Ey); 
+                if (gameCharacter.enemyAlive) { enemy.enemyMove();}
                 player.drawPlayer();
-                enemy.enemyMove();
                 player.movePlayer();
-                
+                Console.Clear();
             }
-            Console.ReadKey();
-
         }
     }
 }
