@@ -9,100 +9,67 @@ namespace Test_BasedRPGFirst
     class Enemy : GameCharacter
     {
 
-        public int Ex;
-        public int Ey;
-        string[] EnemyOne;
-        public string eOne;
-        public bool Ealive = true ;
-        public int direction;
+        public int ememyX;
+        public int enemyY;
+        string[] enemyIcon;
         public Enemy()
         {
-         turn = true;
-            EnemyOne = new string[] { "E" };
+            turn = true;
+            enemyIcon = new string[] { "E" };
             moving = true;
-            Ex = 10;
-            Ey = 10;
-            eOne = "E";
+            ememyX = 10;
+            enemyY = 10;
 
         }
         public void enemyMove()
         {
-            if (Ealive)
-            {
+
+                // makes a random number
                 Random rd = new Random();
-                int num = rd.Next(1, 5);
+                int randomNum = rd.Next(1, 5);
                 Player player = new Player();
                 Map map = new Map();
+
                 map.border();
-                Console.SetCursorPosition(Ex, Ey);
-                Console.Write(eOne);
+                // put cursor position based on enemy position
+                Console.SetCursorPosition(ememyX, enemyY);
+                Console.Write(enemyIcon[0]);
 
                 if (moving )
                 {
-                    Console.SetCursorPosition(50, 20);
-                    Console.Write(num);
-
-                    if (num == 1){
-                    if (map.mapE[Ey - 2, Ex] == "x")
+                    // move the enemy depending n the random number
+                    if (randomNum == 1)
                     {
-                        moving = false;
-                        }
-                        else
-                        {
-                         Ey--;
+                        if (map.worldMap[enemyY - 2, ememyX] == "x"){moving = false;}
 
-                        }
-
+                        else{enemyY--;}
                     }
-                    if (num == 2)
+                    if (randomNum == 2)
                     {
-                        if (map.mapE[Ey + 1, Ex] == "x")
-                        {
-                        moving = false;
+                        if (map.worldMap[enemyY + 1, ememyX] == "x"){moving = false;}
 
-                        }
-                        else 
-                        {
-                            Ey++;
-                            
-                        }
+                        else{enemyY++;}
                     }
 
 
-                    if (num == 3)
+                    if (randomNum == 3)
                     {
-                        if (map.mapE[Ey, Ex - 2] == "x")
-                        {
-                        moving = false;
-                        }
-                        else
-                        {
-                        Ex--;
-                        }
+                        if (map.worldMap[enemyY, ememyX - 2] == "x"){moving = false;}
+
+                        else{ememyX--;}
                     }
-                    if (num == 4)
+                    if (randomNum == 4)
                     {
-                    if (map.mapE[Ey, Ex + 2] == "x")
-                    {
+                        if (map.worldMap[enemyY, ememyX + 2] == "x"){moving = false;}
 
-                        //Console.WriteLine(mapE[locationY , locationX ]);
-                        moving = false;
-
-                    }
-                        else
-                        {
-                        Ex++;
-
-                        }
+                        else{ememyX++;}
                     }
                     moving = true;
-                    player.turn = true;
-                    //check();
-
+                    //player.turn = true;
                 }
                 }
 
-            }
+            
         }
     }
 

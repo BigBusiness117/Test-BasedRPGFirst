@@ -8,10 +8,8 @@ namespace Test_BasedRPGFirst
 {
     class GameCharacter
     {
-        public int kx;
-        public int ky;
-        public int health;
-        public bool moving;
+        protected int health;
+        protected bool moving;
         public bool turn;
         public bool playerAlive;
         public bool enemyAlive;
@@ -22,23 +20,25 @@ namespace Test_BasedRPGFirst
             playerAlive = true;
             enemyAlive = true;
             health = 100;
-            kx = 3;
-            ky = 3;
             moving = true;
             
         }
+        // checks if player hits the enemy
         public void CheckEnemy(int playerX, int enemyX, int playerY, int enemyY)
         {
+            Map map = new Map();
                 if (playerY == enemyY )
                 {
                     if (playerX == enemyX)
                     {
-                        Console.SetCursorPosition(50, 10);
-                        Console.WriteLine("worked");
+                        Console.SetCursorPosition(70, 15);
+                        Console.Beep(170, 200);
+                        Console.WriteLine("You Have Killed enemy");
+                        map.winScreen();
                         enemyAlive = false;
                     }
                 }
         }
-        
+       
     }
 }

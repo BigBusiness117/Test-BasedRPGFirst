@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 
 namespace Test_BasedRPGFirst
 {
-    class Map 
+    class Map
     {
-        public string[,] mapE;
+        public string[,] worldMap;
         public Map()
         {
-            
-            
+
+
         }
 
+        // the map
         public void border()
         {
 
-            mapE = new string[,] {
+            worldMap = new string[,] {
         {"x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x",},
         {"x",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","x",},
         {"x",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","x",},
@@ -39,26 +40,50 @@ namespace Test_BasedRPGFirst
         };
         }
 
+        // draws the map
         public void DrawBorder()
         {
             border();
-  
-            int MaxI = mapE.GetLength(0) - 1;
-            int MaxJ = mapE.GetLength(1) - 1;
+
+            int MaxI = worldMap.GetLength(0) - 1;
+            int MaxJ = worldMap.GetLength(1) - 1;
             for (int i = 0; i <= MaxI; i++)
             {
 
                 for (int j = 0; j <= MaxJ; j++)
                 {
-                    Console.Write(mapE[i, j]);
+                    Console.Write(worldMap[i, j]);
                 }
                 Console.WriteLine("");
 
             }
         }
+        public void winScreen(){
+            string[] winTextArt = new string[] // shows You win ASCII text art
+            {
+            "                                                         ",
+            " ▓██   ██▓ ▒█████   █    ██      █     █░  ██▓ ███▄    █ ",
+            "  ▒██  ██▒▒██▒  ██▒ ██  ▓██▒    ▓█░ █ ░█░▒▓██▒ ██ ▀█   █ ",
+            "   ▒██ ██░▒██░  ██▒▓██  ▒██░    ▒█░ █ ░█ ▒▒██▒▓██  ▀█ ██▒",
+            "   ░ ▐██▓░▒██   ██░▓▓█  ░██░    ░█░ █ ░█ ░░██░▓██▒  ▐▌██▒",
+            "   ░ ██▒▓░░ ████▓▒░▒▒█████▓     ░░██▒██▓ ░░██░▒██░   ▓██░",
+            "    ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒     ░ ▓░▒ ▒   ░▓  ░ ▒░   ▒ ▒ ",
+            "  ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░       ▒ ░ ░  ░ ▒ ░░ ░░   ░ ▒░",
+            " ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░       ░   ░  ░ ▒ ░   ░   ░ ░  ",
+            " ░ ░         ░ ░     ░             ░      ░           ░  ",
 
 
 
+
+            };
+        foreach (var sub in winTextArt)                          // shows the wintext ACSII art 
+                {
+                    Console.WriteLine(sub);
+
+                }
+        }
+
+        
     }
 }
 

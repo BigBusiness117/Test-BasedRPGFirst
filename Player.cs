@@ -9,160 +9,61 @@ namespace Test_BasedRPGFirst
     class Player : GameCharacter
     {
         
-        public int origWidth;
-        public int origHeight;
-        public string player1;
-        public int playerPos;
-        public string[] PlayerOne;
-        public string nextPage;
-        public List<string> list; 
-        public int Px;
-        public int Py;
-        public int curPy;
+        private int origWidth;
+        private int origHeight;
+        private string[] playerIcon; 
+        public int playerX;
+        public int playerY;
         public Player()
         {
-            turn = false;
-
-            Px = 3;
-            Py = 3;
+            //turn = false;
+            playerX = 3;
+            playerY = 3;
+            //can player move or not
             moving = true;
             origHeight = Console.WindowHeight;
             origWidth = Console.WindowWidth;
-            player1 = "@";
-                 }
+        }
+        // draws player to screen
         public void drawPlayer()
         {
-          
-
-            PlayerOne = new string[] { "@" };
-           // if (locationX >= origWidth - 1) { locationX = origWidth - 1; }
-            //if (locationX <= 1) { locationX = 1; }
-            //if (locationY >= origHeight - 1) { locationY = origHeight - 1; }
-            //if (locationY <= 1) { locationY = 1; }
-
-            Console.SetCursorPosition(Px , Py);
-            
-
-
-
-            //Console.WriteLine(locationX + "and" + locationY);
-            //Console.WriteLine(origWidth + "and" + origHeight);
-
-
+            playerIcon = new string[] { "@" };
+            Console.SetCursorPosition(playerX , playerY);
         }
+        // move player
         public void movePlayer()
         {
-
             Map map = new Map();
-            Enemy enemy = new Enemy();
-            
+             
             map.border();
-            Console.Write(player1);
+            Console.Write(playerIcon[0]);
             ConsoleKeyInfo input;
             input = Console.ReadKey(true);
-
-
-
-
-
        
-                if (input.KeyChar == 'w')
-                {
-                    if (map.mapE[Py - 1, Px] == "x")
-                    {
-                        Console.WriteLine(map.mapE[Py, Px]);
-                        moving = false;
-                        curPy = Py;
-
-
-                    }
-                    else if (map.mapE[Py, Px] == "." && moving == true)
-                    {
-                        Py = Py - 1;
-
-
-
-                    }
-                    // Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
-                    //Console.Write("");
-                    Console.Clear();
-                }
-                else if (input.KeyChar == 's')
-                {
-
-                    if (map.mapE[Py + 1, Px] == "x")
-                    {
-
-
-                        moving = false;
-
-                    }
-                    else if (map.mapE[Py, Px] == "." && moving == true)
-                    {
-
-
-                        Py = Py + 1;
-
-                    }
-
-
-
-                    // Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
-                    Console.Clear();
-
-                }
-                else if (input.KeyChar == 'a')
-                {
-
-                    if (map.mapE[Py, Px - 1] == "x")
-                    {
-
-                        //Console.WriteLine(mapE[locationY + 1, locationX]);
-                        moving = false;
-
-                    }
-                    else if (map.mapE[Py, Px] == "." && moving == true)
-                    {
-
-
-                        Px = Px - 1;
-
-                    }
-
-
-                    // Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
-                    // Console.Write("");
-
-                    Console.Clear();
-
-                }
-                else if (input.KeyChar == 'd')
-                {
-                    if (map.mapE[Py, Px + 1] == "x")
-                    {
-
-                        //Console.WriteLine(mapE[locationY , locationX ]);
-                        moving = false;
-
-                    }
-
-                    else if (map.mapE[Py, Px] == "." && moving == true)
-                    {
-
-                        Px = Px + 1;
-
-
-                    }
-                    //Console.Write("@");
-
-                    //  Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
-                    //Console.Write("");
-
-                    Console.Clear();
-
-                }
-            
-            
+            // check if player pressed w
+            if (input.KeyChar == 'w')
+            {
+                // check to see if there is a border and if so make player cant move that way and plays a sound
+                if (map.worldMap[playerY - 1, playerX] == "x"){moving = false; Console.Beep(300, 100); }
+                // makes the player move depending on the key pressed
+                else if (map.worldMap[playerY, playerX] == "." && moving == true){playerY = playerY - 1;}
+            }
+            else if (input.KeyChar == 's')
+            {
+                
+                if (map.worldMap[playerY + 1, playerX] == "x"){moving = false; Console.Beep(300, 100); }
+                else if (map.worldMap[playerY, playerX] == "." && moving == true){playerY = playerY + 1;}
+            }
+            else if (input.KeyChar == 'a')
+            {
+                if (map.worldMap[playerY, playerX - 1] == "x"){ moving = false; Console.Beep(300, 100); }
+                else if (map.worldMap[playerY, playerX] == "." && moving == true){playerX = playerX - 1;}
+            }
+            else if (input.KeyChar == 'd')
+            {
+                if (map.worldMap[playerY, playerX + 1] == "x"){moving = false; Console.Beep(300, 100); }
+                else if (map.worldMap[playerY, playerX] == "." && moving == true){playerX = playerX + 1; }
+            }
             moving = true;
             
         }
