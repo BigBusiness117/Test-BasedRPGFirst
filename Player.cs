@@ -8,65 +8,96 @@ namespace Test_BasedRPGFirst
 {
     class Player : GameCharacter
     {
-        
+
         private int origWidth;
         private int origHeight;
-        private string[] playerIcon; 
+        private string[] playerIcon;
         public int playerX;
         public int playerY;
+        public bool playerMoving = true;
+
         public Player()
         {
             //turn = false;
             playerX = 3;
             playerY = 3;
             //can player move or not
-            moving = true;
+
             origHeight = Console.WindowHeight;
             origWidth = Console.WindowWidth;
         }
         // draws player to screen
-        public void drawPlayer()
+        public void drawPlayer(Enemy enemy)
         {
+            //Console.SetCursorPosition(70, 15);
+            // Console.WriteLine(enemy.enemyY - 1 + " " + playerY + " " + playerX + " hi");
+            Console.SetCursorPosition(playerX, playerY);
+            if(playerMoving == true) { 
             playerIcon = new string[] { "@" };
-            Console.SetCursorPosition(playerX , playerY);
+            Console.Write(playerIcon[0]);
+            }
         }
         // move player
-        public void movePlayer()
+        public void movePlayer(Enemy enemy, Map map)
         {
-            Map map = new Map();
-             
+
+            
+            //ap map = new Map();
+
             map.border();
-            Console.Write(playerIcon[0]);
             ConsoleKeyInfo input;
             input = Console.ReadKey(true);
-       
-            // check if player pressed w
-            if (input.KeyChar == 'w')
-            {
-                // check to see if there is a border and if so make player cant move that way and plays a sound
-                if (map.worldMap[playerY - 1, playerX] == "x"){moving = false; Console.Beep(300, 100); }
-                // makes the player move depending on the key pressed
-                else if (map.worldMap[playerY, playerX] == "." && moving == true){playerY = playerY - 1;}
-            }
-            else if (input.KeyChar == 's')
-            {
-                
-                if (map.worldMap[playerY + 1, playerX] == "x"){moving = false; Console.Beep(300, 100); }
-                else if (map.worldMap[playerY, playerX] == "." && moving == true){playerY = playerY + 1;}
-            }
-            else if (input.KeyChar == 'a')
-            {
-                if (map.worldMap[playerY, playerX - 1] == "x"){ moving = false; Console.Beep(300, 100); }
-                else if (map.worldMap[playerY, playerX] == "." && moving == true){playerX = playerX - 1;}
-            }
-            else if (input.KeyChar == 'd')
-            {
-                if (map.worldMap[playerY, playerX + 1] == "x"){moving = false; Console.Beep(300, 100); }
-                else if (map.worldMap[playerY, playerX] == "." && moving == true){playerX = playerX + 1; }
-            }
-            moving = true;
             
-        }
+            if (playerMoving == true)
+            {
 
+                // check if player pressed w
+                if (input.KeyChar == 'w')
+                {
+
+                    moving = true;
+                    // check to see if there is a border and if so make player cant move that way and plays a sound
+                    if (map.worldMap[playerY - 1, playerX] == "x") { moving = false; Console.Beep(300, 100); }
+                    // makes the player move depending on the key pressed
+                    else if (map.worldMap[playerY, playerX] == "." && moving == true) { playerY = playerY - 1; }
+                }
+                else if (input.KeyChar == 's')
+                {
+                    moving = true;
+                    if (map.worldMap[playerY + 1, playerX] == "x") { moving = false; Console.Beep(300, 100); }
+                    else if (map.worldMap[playerY, playerX] == "." && moving == true) { playerY = playerY + 1; }
+                }
+                else if (input.KeyChar == 'a')
+                {
+                    moving = true;
+                    if (map.worldMap[playerY, playerX - 1] == "x") { moving = false; Console.Beep(300, 100); }
+                    else if (map.worldMap[playerY, playerX] == "." && moving == true) { playerX = playerX - 1; }
+                }
+                else if (input.KeyChar == 'd')
+                {
+                    moving = true;
+                    if (map.worldMap[playerY, playerX + 1] == "x") { moving = false; Console.Beep(300, 100); }
+                    else if (map.worldMap[playerY, playerX] == "." && moving == true) { playerX = playerX + 1; }
+                }
+            }
+
+        }
+        public void CheckAllEnemy(Enemy enemy)
+        {
+            if (playerY == enemy.enemyY)
+            {
+                if (playerX == enemy.ememyX)
+                {
+                    Console.SetCursorPosition(70, 15);
+                    Console.Beep(170, 200);
+                    Console.WriteLine("You Have Killed enemy");
+                    //map.winScreen();
+                    //enemyX = 0;
+                    // enemyY = 0;
+                   enemy.enemyAlive = false;
+                    enemy.enemyallDead = true;
+                }
+            }
+        }
     }
 }
