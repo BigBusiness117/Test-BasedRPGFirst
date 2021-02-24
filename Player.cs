@@ -94,10 +94,37 @@ namespace Test_BasedRPGFirst
                     //map.winScreen();
                     //enemyX = 0;
                     // enemyY = 0;
-                   enemy.enemyAlive = false;
+                    enemy.enemyAlive = false;
                     enemy.enemyallDead = true;
+                }
+            }
+            if (playerY == enemy.horizontalEnemyY)
+            {
+                if (playerX == enemy.horizontalEnemyX)
+                {
+                    Console.SetCursorPosition(70, 15);
+                    Console.Beep(170, 200);
+                    Console.WriteLine("You Have Killed horizontal enemy");
+                    //map.winScreen();
+                    //enemyX = 0;
+                    // enemyY = 0;
+                    enemy.horizontalEnemyDead = true;
+                }
+            }
+            if (playerY == enemy.stillEnemyY)
+            {
+                if (playerX == enemy.stillEnemyX)
+                {
+                    Console.SetCursorPosition(70, 15);
+                    Console.Beep(170, 200);
+                    Console.WriteLine("You Have Killed still enemy");
+                    //map.winScreen();
+                    //enemyX = 0;
+                    // enemyY = 0;
+                    enemy.stillEnemyDead = true;
                 }
             }
         }
     }
+
 }

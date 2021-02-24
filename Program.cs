@@ -36,12 +36,17 @@ namespace Test_BasedRPGFirst
 
                 if (gameCharacter.enemyAlive){ enemy.drawEnemy(); }
                 enemy.drawhorizontalEnemy();
+                enemy.StilldrawEnemy();
                 //Check = false;
                 //if (Check == false && turn == true && gameCharacter.enemyAlive) { gameCharacter.CheckPlayer(player.playerX, enemy.ememyX, player.playerY, enemy.enemyY); Check = true; turn = false; }
 
                 if (gameCharacter.playerAlive) { player.drawPlayer(enemy); }
                 if (gameCharacter.playerAlive) { player.movePlayer(enemy, map); Check = false; }
-                player.CheckAllEnemy(enemy);
+                if (player.playerMoving == true) 
+                { 
+                    player.CheckAllEnemy(enemy);  
+                }
+                
                 Check = false;
                // if (Check == false && turn == false && gameCharacter.playerAlive == true) { gameCharacter.CheckEnemy(player.playerX, enemy.ememyX, player.playerY, enemy.enemyY); Check = true; }
 
@@ -54,10 +59,14 @@ namespace Test_BasedRPGFirst
 
 
                 if (gameCharacter.enemyAlive  && gameCharacter.playerAlive ) { enemy.enemyMove(map,player); count = 0; Check = false; }
+                enemy.horizontalEnemyMove(map,player);
+                enemy.stillEnemyMove(map, player);
                 //Console.ReadKey();
                 //move the player
-                if(enemy.enemyallDead == false) { enemy.CheckAllPlayer(player); }
-                if( gameCharacter.playerAlive == false)
+                if (enemy.enemyallDead == false) { enemy.CheckAllPlayer(player); }
+                if (enemy.horizontalEnemyDead == false) { enemy.CheckhorizontalEnemy(player); }
+                if (enemy.horizontalEnemyDead == false) { enemy.CheckStillEnemy(player); }
+                if ( gameCharacter.playerAlive == false)
                 {
                     Console.ReadKey();
                 }
