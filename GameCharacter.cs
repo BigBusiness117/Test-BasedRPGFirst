@@ -14,6 +14,8 @@ namespace Test_BasedRPGFirst
         protected bool moving;
         public bool playerAlive;
         public bool enemyAlive;
+        public int X;
+        public int Y;
 
       public GameCharacter()
         {

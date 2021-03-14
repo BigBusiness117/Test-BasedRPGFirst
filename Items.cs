@@ -9,62 +9,33 @@ namespace Test_BasedRPGFirst
     class Items
     {
         // items types/names
-        private string PowerUp;
-        private string HealthPack;
-        private string Armor;
+        protected string avatar;
+        protected string itemType;
+
         // items location
-        public int PowerUpX;
-        public int PowerUpY;
-        public int HealthPackX;
-        public int HealthPackY;
-        public int ArmorX;
-        public int ArmorY;
+        public int X;
+        public int Y;
         // checks to see if the items has been used
-        public bool HealthPackUsed;
-        public bool ArmorPackUsed;
-        public bool PowerUpUsed;
+        public bool Used;
 
-        public Items()
+
+        public Items(string avatar, string itemType, int X, int Y)
         {
-            PowerUp = "P";
-            HealthPack = "H";
-            Armor = "A";
-            HealthPackX = 45;
-            HealthPackY = 14;
-            ArmorX = 15;
-            ArmorY = 1;
-            PowerUpX = 15;
-            PowerUpY = 4;
-            HealthPackUsed = false;
-            ArmorPackUsed = false;
-            PowerUpUsed = false;
+            this.itemType = itemType;
+            this.avatar = avatar;
+            this.X = X;
+            this.Y = Y;
 
         }
-        public void DrawHealthPack()
+        public void Draw()
         {
-            if (HealthPackUsed == false)
+            if (Used == false)
             {
-                Console.SetCursorPosition(HealthPackX, HealthPackY);
-                Console.Write(HealthPack);
+                Console.SetCursorPosition(X, Y);
+                Console.Write(avatar);
             }
         }
-        public void DrawArmor()
-        {
-            if (ArmorPackUsed == false)
-            {
-                Console.SetCursorPosition(ArmorX, ArmorY);
-                Console.Write(Armor);
-            }
-        }
-        public void DrawPowerUp()
-        {
-            if(PowerUpUsed == false)
-            {
 
-            Console.SetCursorPosition(PowerUpX, PowerUpY);
-            Console.Write(PowerUp);
-            }
-        }
 
     }
 }

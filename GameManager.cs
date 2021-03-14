@@ -14,8 +14,12 @@ namespace Test_BasedRPGFirst
             Player player = new Player();
             Map map = new Map();
             Enemy enemy = new Enemy();
+            HorizontalEnemy horizontalEnemy = new HorizontalEnemy();
+            StillEnemy stillEnemy = new StillEnemy();
             StatHud statsHUD = new StatHud();
-            Items items = new Items();
+            Items healthPack = new Items("H","HealthPack",45,14);
+            Items powerUp = new Items("P","PowerUp",15,4);
+            Items armor = new Items("A","Armor",15,1);
             GameCharacter gameCharacter = new GameCharacter();
 
             // game loop
@@ -30,34 +34,41 @@ namespace Test_BasedRPGFirst
                 statsHUD.ShowHUD(player, enemy);
 
                 // draws the game objects
-                enemy.drawEnemy(); 
-                enemy.drawhorizontalEnemy();
-                enemy.StilldrawEnemy();
-                items.DrawHealthPack();
-                items.DrawArmor();
-                items.DrawPowerUp();
+                enemy.drawEnemy();
+                horizontalEnemy.drawEnemy();
+                stillEnemy.drawEnemy();
+               // enemy.drawhorizontalEnemy();
+               // enemy.StilldrawEnemy();
+                healthPack.Draw();
+                powerUp.Draw();
+                armor.Draw();
                 player.drawPlayer(enemy); 
                 //moves the player
-                player.movePlayer(enemy, map);  
+                player.movePlayer(enemy, map, horizontalEnemy,stillEnemy);  
+
                 // checks if player had any collision
                 if (player.playerMoving == true)
                 {
-                    player.CheckCollision(enemy,statsHUD,items);
+                    player.CheckCollision(enemy,statsHUD,healthPack, powerUp,armor, horizontalEnemy,stillEnemy);
                 }
 
                 
 
 
                 //moves the enemies
-                enemy.enemyMove(map, player); 
-                enemy.horizontalEnemyMove(map, player);
-                enemy.stillEnemyMove(map, player);
+                enemy.enemyMove(map, player);
+                horizontalEnemy.enemyMove(map, player);
+                stillEnemy.enemyMove(map, player);
+                //enemy.horizontalEnemyMove(map, player);
+               // enemy.stillEnemyMove(map, player);
                 // check to see if enemy hit player
                 if (enemy.enemyDead == false) { enemy.CheckAllPlayer(player); }
-                if (enemy.horizontalEnemyDead == false) { enemy.CheckhorizontalEnemy(player); }
-                if (enemy.stillEnemyDead == false) { enemy.CheckStillEnemy(player); }
-               
-                Console.Clear();
+                if (horizontalEnemy.enemyDead == false) { horizontalEnemy.CheckAllPlayer(player); }
+                if (stillEnemy.enemyDead == false) { stillEnemy.CheckAllPlayer(player); }
+                //if (enemy.horizontalEnemyDead == false) { enemy.CheckhorizontalEnemy(player); }
+               // if (enemy.stillEnemyDead == false) { enemy.CheckStillEnemy(player); }
+
+                Console.SetCursorPosition(0, 0);
             }
         }
     }

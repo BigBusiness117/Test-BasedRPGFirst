@@ -37,11 +37,11 @@ namespace Test_BasedRPGFirst
             }
             if (horizontalEnemyStats == true)
             {
-                Console.WriteLine(" HorizontalEnemy Health: " + enemy.HorizontalHealth);
+            //    Console.WriteLine(" HorizontalEnemy Health: " + enemy.HorizontalHealth);
             }
             if (stillEnemyStats == true)
             {
-                Console.Write(" StillEnemy Health: " + enemy.StillHealth);
+             //   Console.Write(" StillEnemy Health: " + enemy.StillHealth);
             }
             Console.SetCursorPosition(0, 16);
             Console.WriteLine(" E = Enemy: " + " @ = Player: " + " <,> = HorizontalEnemy: " + " S = StillEnemy: ");
