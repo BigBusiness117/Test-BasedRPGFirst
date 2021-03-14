@@ -54,13 +54,14 @@ namespace Test_BasedRPGFirst
                      X--;
                   }
                 }
-           
+                EnemyDealDamage = false;
+
         }
         public override void CheckAllPlayer(Player player)
         {
-            if (player.playerY == Y)
+            if (player.Y == Y)
             {
-              if (player.playerX == X)
+              if (player.X == X)
               {
 
                           Console.SetCursorPosition(40, 15);

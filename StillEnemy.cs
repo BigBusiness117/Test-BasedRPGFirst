@@ -32,33 +32,36 @@ namespace Test_BasedRPGFirst
             // takes damage if conditions are met
                  TakeDamge(25);
             // moves the enemy
-                 if (Y - 2 == player.playerY && X == player.playerX || Y - 1 == player.playerY && X == player.playerX)
+                 if (Y - 2 == player.Y && X == player.X || Y - 1 == player.Y && X == player.X)
                {
 
                     Y = Y - 1;
                }
-               if (Y + 2 == player.playerY && X == player.playerX || Y + 1 == player.playerY && X == player.playerX)
+               if (Y + 2 == player.Y && X == player.X || Y + 1 == player.Y && X == player.X)
                {
             
                    Y = Y + 1;
-              }
-               if (Y == player.playerY && X - 2 == player.playerX || Y == player.playerY && X - 1 == player.playerX)
+               }
+               if (Y == player.Y && X - 2 == player.X || Y == player.Y && X - 1 == player.X)
                {
 
                    X = X - 1;
                }
-               if (Y == player.playerY && X + 2 == player.playerX || Y == player.playerY && X + 1 == player.playerX)
-                {
+               if (Y == player.Y && X + 2 == player.X || Y == player.Y && X + 1 == player.X)
+               {
             
                      X = X + 1;
-                }
                }
+                EnemyDealDamage = false;
+
                }
+
+        }
         public override void CheckAllPlayer(Player player)
         {
-            if (player.playerY == Y)
+            if (player.Y == Y)
             {
-                if (player.playerX == X)
+                if (player.X == X)
                 {
                     Console.SetCursorPosition(40, 15);
                     Console.Beep(170, 200);

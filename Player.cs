@@ -12,8 +12,8 @@ namespace Test_BasedRPGFirst
         // player icon
         private string[] playerIcon;
         // 
-        public int playerX;
-        public int playerY;
+        public int X;
+        public int Y;
         public bool playerMoving = true;
 
         public int remainingShields;
@@ -24,15 +24,15 @@ namespace Test_BasedRPGFirst
         {
 
             shields = 50;
-            playerX = 17;
-            playerY = 1;
+            X = 17;
+            Y = 1;
             remainingShields = shields;
 
         }
         // draws player to screen
         public void drawPlayer(Enemy enemy)
         {
-            Console.SetCursorPosition(playerX, playerY);
+            Console.SetCursorPosition(X, Y);
             if (playerMoving == true) {
                 playerIcon = new string[] { "@" };
                 Console.Write(playerIcon[0]);
@@ -51,42 +51,42 @@ namespace Test_BasedRPGFirst
                 //if (enemy.StillDealDamage == true) { TakeDamge(enemy, 10); }
                 if (enemy.EnemyDealDamage == true || horizontalEnemy.EnemyDealDamage == true || stillEnemy.EnemyDealDamage == true) { TakeDamge(enemy, 25, horizontalEnemy, stillEnemy); }
 
-                PushBackX = playerX;
-                PushBackY = playerY;
+                PushBackX = base.X;
+                PushBackY = Y;
                 // check if player pressed w
                 if (input.KeyChar == 'w')
                 {
-                    Console.SetCursorPosition(playerX, playerY);
+                    Console.SetCursorPosition(X, Y);
 
                     moving = true;
                     // check to see if there is a border and if so make player cant move that way and plays a sound
-                    if (map.displayMap[playerX, playerY - 1] == 'x') { moving = false; Console.Beep(300, 100); }
+                    if (map.displayMap[X, Y - 1] == 'x') { moving = false; Console.Beep(300, 100); }
                     // makes the player move depending on the key pressed
-                    else if (map.displayMap[playerX, playerY] == '.' && moving == true)
+                    else if (map.displayMap[X, Y] == '.' && moving == true)
                     {
 
-                        playerY = playerY - 1;
+                        Y = Y - 1;
                     }
                 }
                 else if (input.KeyChar == 's')
                 {
-                    Console.SetCursorPosition(playerX, playerY);
+                    Console.SetCursorPosition(X, Y);
                     moving = true;
-                    if (map.displayMap[playerX, playerY + 1] == 'x') { moving = false; Console.Beep(300, 100); }
-                    else if (map.displayMap[playerX, playerY] == '.' && moving == true) { playerY = playerY + 1; }
+                    if (map.displayMap[X, Y + 1] == 'x') { moving = false; Console.Beep(300, 100); }
+                    else if (map.displayMap[X, Y] == '.' && moving == true) { Y = Y + 1; }
                 }
                 else if (input.KeyChar == 'a')
                 {
                     moving = true;
-                    if (map.displayMap[playerX - 1, playerY] == 'x') { moving = false; Console.Beep(300, 100); }
-                    else if (map.displayMap[playerX, playerY] == '.' && moving == true) { playerX = playerX - 1; }
+                    if (map.displayMap[X - 1, Y] == 'x') { moving = false; Console.Beep(300, 100); }
+                    else if (map.displayMap[X, Y] == '.' && moving == true) { X = X - 1; }
                 }
                 else if (input.KeyChar == 'd')
                 {
                     Console.SetCursorPosition(70, 15);
                     moving = true;
-                    if (map.displayMap[playerX + 1, playerY] == 'x') { moving = false; Console.Beep(300, 100); }
-                    else if (map.displayMap[playerX, playerY] == '.' && moving == true) { playerX = playerX + 1; }
+                    if (map.displayMap[X + 1, Y] == 'x') { moving = false; Console.Beep(300, 100); }
+                    else if (map.displayMap[X, Y] == '.' && moving == true) { X = X + 1; }
                 }
             }
 
@@ -94,30 +94,32 @@ namespace Test_BasedRPGFirst
         // checks to see if player colided with any game objects 
         public void CheckCollision(Enemy enemy, StatHud statHud, Items healthPack, Items powerUp, Items armor, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy)
         {
-            if (playerY == enemy.Y)
+            Console.SetCursorPosition(70, 15);
+            Console.WriteLine("try" + X);
+            if (Y == enemy.Y)
             {
-                if (playerX == enemy.X)
+                if (X == enemy.X)
                 {
                     Console.SetCursorPosition(70, 15);
                     Console.Beep(170, 200);
                     //map.winScreen();
 
-                    playerY = PushBackY;
-                    playerX = PushBackX;
+                    Y = PushBackY;
+                    X = PushBackX;
                     statHud.horizontalEnemyStats = false;
                     statHud.stillEnemyStats = false;
                     statHud.enemyStats = true;
                     enemy.enemyTakeDamge = true;
                 }
             }
-            if (playerY == horizontalEnemy.Y)
+            if (Y == horizontalEnemy.Y)
             {
-                if (playerX == horizontalEnemy.X)
+                if (X == horizontalEnemy.X)
                 {
                     Console.SetCursorPosition(70, 15);
                     Console.WriteLine("You Have Killed horizontal enemy");
-                    playerY = PushBackY;
-                    playerX = PushBackX;
+                    Y = PushBackY;
+                    X = PushBackX;
                     horizontalEnemy.enemyTakeDamge = true;
                     statHud.stillEnemyStats = false;
                     statHud.enemyStats = false;
@@ -125,26 +127,28 @@ namespace Test_BasedRPGFirst
                     //map.winScreen();
                 }
             }
-            if (playerY == stillEnemy.X)
+            if (Y == stillEnemy.X)
             {
-                if (playerX == stillEnemy.Y)
+                if (X == stillEnemy.Y)
                 {
                     Console.SetCursorPosition(70, 15);
                     Console.Beep(170, 200);
-                    playerY = PushBackY;
-                    playerX = PushBackX;
+                    Y = PushBackY;
+                    X = PushBackX;
                     Console.WriteLine("You Have Killed still enemy");
                     stillEnemy.enemyTakeDamge = true;
                     statHud.horizontalEnemyStats = false;
                     statHud.enemyStats = false;
                     statHud.stillEnemyStats = true;
 
+                }
+            }
                     //map.winScreen();
                     //    }
                     //  }
-                    if (playerY == healthPack.Y)
+                    if (Y == healthPack.Y)
                     {
-                        if (playerX == healthPack.X)
+                        if (X == healthPack.X)
                         {
                             if (healthPack.Used == false)
                             {
@@ -159,10 +163,14 @@ namespace Test_BasedRPGFirst
                             }
                         }
                     }
-                    if (playerY == armor.Y)
+                    if (Y == armor.Y)
                     {
-                        if (playerX == armor.X)
+                        Console.SetCursorPosition(70, 15);
+                        Console.WriteLine("tryy" + X);
+                        if (X == armor.X)
                         {
+                            Console.SetCursorPosition(70, 15);
+                            Console.WriteLine("tryx" + X);
                             if (armor.Used == false)
                             {
                                 shields += 50;
@@ -176,9 +184,9 @@ namespace Test_BasedRPGFirst
                             }
                         }
                     }
-                    if (playerY == powerUp.Y)
+                    if (Y == powerUp.Y)
                     {
-                        if (playerX == powerUp.X)
+                        if (X == powerUp.X)
                         {
                             if (powerUp.Used == false)
                             {
@@ -190,9 +198,7 @@ namespace Test_BasedRPGFirst
                             }
                         }
                     }
-                }
 
-            }
         }
                 // player takes damage depending on the enemy
                 private void TakeDamge(Enemy enemy, int damage, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy)

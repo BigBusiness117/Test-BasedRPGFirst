@@ -31,7 +31,7 @@ namespace Test_BasedRPGFirst
                 // draws the map 
                 map.DrawBorder();
                 // showsthe characters Stats
-                statsHUD.ShowHUD(player, enemy);
+                statsHUD.ShowHUD(player, enemy, healthPack);
 
                 // draws the game objects
                 enemy.drawEnemy();

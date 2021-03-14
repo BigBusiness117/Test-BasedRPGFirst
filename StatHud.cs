@@ -19,11 +19,11 @@ namespace Test_BasedRPGFirst
             stillEnemyStats = false;
         }
         // shows the hud
-    public void ShowHUD(Player player, Enemy enemy)
+    public void ShowHUD(Player player, Enemy enemy, Items healthPack)
     {
             Console.SetCursorPosition(65, 5);
 
-            Console.WriteLine(" Health: " + player.health + " shields: "+ player.shields );
+            Console.WriteLine(" Health: " + player.health + " shields: "+ player.shields + " PLX: " + player.X + " PLY " + player.Y + " HLX: " + healthPack.X + " HLY " + healthPack.Y);
             if(enemy.DamageBoost == true)
             {
                 Console.SetCursorPosition(90, 5);

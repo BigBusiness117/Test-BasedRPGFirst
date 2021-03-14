@@ -229,9 +229,9 @@ namespace Test_BasedRPGFirst
         // checks if enemy hit the player
         public virtual void CheckAllPlayer(Player player)
         {
-            if (player.playerY == Y)
+            if (player.Y == Y)
             {
-                if (player.playerX == X)
+                if (player.X == X)
                 {
                     // deals damge to the player and push enemy back to its spot
                     Console.SetCursorPosition(40, 15);
