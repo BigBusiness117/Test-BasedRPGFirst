@@ -92,10 +92,8 @@ namespace Test_BasedRPGFirst
 
         }
         // checks to see if player colided with any game objects 
-        public void CheckCollision(Enemy enemy, StatHud statHud, Items healthPack, Items powerUp, Items armor, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy)
+        public void CheckCollision(Enemy enemy, StatHud statHud, Items[] healthPack, Items powerUp, Items armor, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy)
         {
-            Console.SetCursorPosition(70, 15);
-            Console.WriteLine("try" + X);
             if (Y == enemy.Y)
             {
                 if (X == enemy.X)
@@ -141,32 +139,33 @@ namespace Test_BasedRPGFirst
                     statHud.enemyStats = false;
                     statHud.stillEnemyStats = true;
 
-                }
+                 }
             }
-                    //map.winScreen();
-                    //    }
-                    //  }
-                    if (Y == healthPack.Y)
+            //map.winScreen();
+            //    }
+            //  
+            for (int i = 0; i < 5; i++)
+            {
+                if (Y == healthPack[i].Y)
+                {
+                    if (X == healthPack[i].X)
                     {
-                        if (X == healthPack.X)
+                        if (healthPack[i].Used == false)
                         {
-                            if (healthPack.Used == false)
+                            health += 50;
+                            if (health >= 100)
                             {
-                                health += 50;
-                                if (health >= 100)
-                                {
-                                    health = 100;
-                                }
-                                healthPack.X = 0;
-                                healthPack.Y = 0;
-                                healthPack.Used = true;
+                                health = 100;
                             }
+                            healthPack[i].X = 0;
+                            healthPack[i].Y = 0;
+                            healthPack[i].Used = true;
                         }
                     }
+                }
+            }
                     if (Y == armor.Y)
                     {
-                        Console.SetCursorPosition(70, 15);
-                        Console.WriteLine("tryy" + X);
                         if (X == armor.X)
                         {
                             Console.SetCursorPosition(70, 15);

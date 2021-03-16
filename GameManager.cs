@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,10 +14,17 @@ namespace Test_BasedRPGFirst
             Player player = new Player();
             Map map = new Map();
             Enemy enemy = new Enemy();
+            
             HorizontalEnemy horizontalEnemy = new HorizontalEnemy();
             StillEnemy stillEnemy = new StillEnemy();
             StatHud statsHUD = new StatHud();
-            Items healthPack = new Items("H","HealthPack",45,14);
+            Items[] healthPack = new Items[5];
+            healthPack[0]= new Items("H", "HealthPack", 45, 14);
+            healthPack[1]= new Items("H", "HealthPack", 44, 14);
+            healthPack[2]= new Items("H", "HealthPack", 43, 14);
+            healthPack[3]= new Items("H", "HealthPack", 42, 14);
+            healthPack[4]= new Items("H", "HealthPack", 41, 14);
+
             Items powerUp = new Items("P","PowerUp",15,4);
             Items armor = new Items("A","Armor",15,1);
             GameCharacter gameCharacter = new GameCharacter();
@@ -31,7 +38,7 @@ namespace Test_BasedRPGFirst
                 // draws the map 
                 map.DrawBorder();
                 // showsthe characters Stats
-                statsHUD.ShowHUD(player, enemy, healthPack);
+                statsHUD.ShowHUD(player, enemy, healthPack[0]);
 
                 // draws the game objects
                 enemy.drawEnemy();
@@ -39,10 +46,14 @@ namespace Test_BasedRPGFirst
                 stillEnemy.drawEnemy();
                // enemy.drawhorizontalEnemy();
                // enemy.StilldrawEnemy();
-                healthPack.Draw();
+                healthPack[1].Draw();
+                healthPack[0].Draw();
+                healthPack[2].Draw();
+                healthPack[3].Draw();
+                healthPack[4].Draw();
                 powerUp.Draw();
                 armor.Draw();
-                player.drawPlayer(enemy); 
+                player.drawPlayer(enemy);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
                 //moves the player
                 player.movePlayer(enemy, map, horizontalEnemy,stillEnemy);  
 
