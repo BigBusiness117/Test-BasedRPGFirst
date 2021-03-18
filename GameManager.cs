@@ -14,7 +14,7 @@ namespace Test_BasedRPGFirst
             Player player = new Player();
             Map map = new Map();
             Enemy enemy = new Enemy();
-            
+            RandomEnemy randomEnemy = new RandomEnemy();
             HorizontalEnemy horizontalEnemy = new HorizontalEnemy();
             StillEnemy stillEnemy = new StillEnemy();
             StatHud statsHUD = new StatHud();
@@ -41,7 +41,7 @@ namespace Test_BasedRPGFirst
                 statsHUD.ShowHUD(player, enemy, healthPack[0]);
 
                 // draws the game objects
-                enemy.drawEnemy();
+                randomEnemy.drawEnemy();
                 horizontalEnemy.drawEnemy();
                 stillEnemy.drawEnemy();
                // enemy.drawhorizontalEnemy();
@@ -60,20 +60,20 @@ namespace Test_BasedRPGFirst
                 // checks if player had any collision
                 if (player.playerMoving == true)
                 {
-                    player.CheckCollision(enemy,statsHUD,healthPack, powerUp,armor, horizontalEnemy,stillEnemy);
+                    player.CheckCollision(enemy,statsHUD,healthPack, powerUp,armor, horizontalEnemy,stillEnemy,randomEnemy);
                 }
 
                 
 
 
                 //moves the enemies
-                enemy.enemyMove(map, player);
+                randomEnemy.enemyMove(map, player);
                 horizontalEnemy.enemyMove(map, player);
                 stillEnemy.enemyMove(map, player);
                 //enemy.horizontalEnemyMove(map, player);
                // enemy.stillEnemyMove(map, player);
                 // check to see if enemy hit player
-                if (enemy.enemyDead == false) { enemy.CheckAllPlayer(player); }
+                if (randomEnemy.enemyDead == false) { randomEnemy.CheckAllPlayer(player); }
                 if (horizontalEnemy.enemyDead == false) { horizontalEnemy.CheckAllPlayer(player); }
                 if (stillEnemy.enemyDead == false) { stillEnemy.CheckAllPlayer(player); }
                 //if (enemy.horizontalEnemyDead == false) { enemy.CheckhorizontalEnemy(player); }

@@ -17,6 +17,7 @@ namespace Test_BasedRPGFirst
             enemyStats = false;
             horizontalEnemyStats = false;
             stillEnemyStats = false;
+            
         }
         // shows the hud
     public void ShowHUD(Player player, Enemy enemy, Items healthPack)

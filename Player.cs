@@ -51,7 +51,7 @@ namespace Test_BasedRPGFirst
                 //if (enemy.StillDealDamage == true) { TakeDamge(enemy, 10); }
                 if (enemy.EnemyDealDamage == true || horizontalEnemy.EnemyDealDamage == true || stillEnemy.EnemyDealDamage == true) { TakeDamge(enemy, 25, horizontalEnemy, stillEnemy); }
 
-                PushBackX = base.X;
+                PushBackX = X;
                 PushBackY = Y;
                 // check if player pressed w
                 if (input.KeyChar == 'w')
@@ -92,11 +92,11 @@ namespace Test_BasedRPGFirst
 
         }
         // checks to see if player colided with any game objects 
-        public void CheckCollision(Enemy enemy, StatHud statHud, Items[] healthPack, Items powerUp, Items armor, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy)
+        public void CheckCollision(Enemy enemy, StatHud statHud, Items[] healthPack, Items powerUp, Items armor, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy,RandomEnemy randomEnemy)
         {
-            if (Y == enemy.Y)
+            if (Y == randomEnemy.Y)
             {
-                if (X == enemy.X)
+                if (X == randomEnemy.X)
                 {
                     Console.SetCursorPosition(70, 15);
                     Console.Beep(170, 200);
@@ -107,7 +107,7 @@ namespace Test_BasedRPGFirst
                     statHud.horizontalEnemyStats = false;
                     statHud.stillEnemyStats = false;
                     statHud.enemyStats = true;
-                    enemy.enemyTakeDamge = true;
+                    randomEnemy.enemyTakeDamge = true;
                 }
             }
             if (Y == horizontalEnemy.Y)
@@ -139,7 +139,7 @@ namespace Test_BasedRPGFirst
                     statHud.enemyStats = false;
                     statHud.stillEnemyStats = true;
 
-                 }
+                }
             }
             //map.winScreen();
             //    }

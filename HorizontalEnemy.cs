@@ -71,8 +71,8 @@ namespace Test_BasedRPGFirst
 
                     //map.winScreen();
                     EnemyDealDamage = true;
-                      }
-                  }
+              }
+            }
                 
         }
     }
