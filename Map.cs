@@ -14,19 +14,29 @@ namespace Test_BasedRPGFirst
         public  char[,] displayMap;
         private char tile;
         private string mapLine;
-
+        public int camera ;
+        public int mCamera;
         
         public Map()
         {
-            displayMap = new char[60, 16];
-
+            camera = 60;
+            mCamera = 0;
+            displayMap = new char[120, 16];
         }
 
         // the map
 
         // draws the map
-        public void DrawBorder()
+        public void DrawBorder(Player player)
+
         {
+            if(player.X >= 58)
+            {
+                
+
+                camera++;
+                mCamera++;
+            }
             // gets the map from a text file and then convert the map string[] to a 2d char array
             worldMap = File.ReadAllLines("map.txt");        // holds the story text
             for (int y = 0; y < 16; y++)
@@ -34,7 +44,7 @@ namespace Test_BasedRPGFirst
                 
                 mapLine = worldMap[y];
 
-                for(int x =0; x < 60; x++)
+                for(int x =mCamera; x < camera; x++)
                 {
                     tile = mapLine[x];
                     displayMap[x, y] = tile;

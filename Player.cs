@@ -39,18 +39,19 @@ namespace Test_BasedRPGFirst
             }
         }
         // move player
-        public void movePlayer(Enemy enemy, Map map, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy)
+        public void movePlayer(Enemy enemy, Map map, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy, RandomEnemy[] randomEnemy)
         {
             ConsoleKeyInfo input;
             input = Console.ReadKey(true);
-
             if (playerMoving == true)
             {
                 // takes damage from enemy if conditions are right
                 //if (enemy.HorizontalDealDamage == true) { TakeDamge(enemy, 50); }
                 //if (enemy.StillDealDamage == true) { TakeDamge(enemy, 10); }
-                if (enemy.EnemyDealDamage == true || horizontalEnemy.EnemyDealDamage == true || stillEnemy.EnemyDealDamage == true) { TakeDamge(enemy, 25, horizontalEnemy, stillEnemy); }
-
+                for (int d = 0; d < 10; d++)
+                {
+                    if (randomEnemy[d].EnemyDealDamage == true || horizontalEnemy.EnemyDealDamage == true || stillEnemy.EnemyDealDamage == true) { TakeDamge(enemy, 25, horizontalEnemy, stillEnemy, randomEnemy[d]); }
+                }
                 PushBackX = X;
                 PushBackY = Y;
                 // check if player pressed w
@@ -92,22 +93,24 @@ namespace Test_BasedRPGFirst
 
         }
         // checks to see if player colided with any game objects 
-        public void CheckCollision(Enemy enemy, StatHud statHud, Items[] healthPack, Items powerUp, Items armor, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy,RandomEnemy randomEnemy)
+        public void CheckCollision(Enemy enemy, StatHud statHud, Items[] healthPack, Items powerUp, Items armor, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy,RandomEnemy[] randomEnemy)
         {
-            if (Y == randomEnemy.Y)
-            {
-                if (X == randomEnemy.X)
+            for (int r = 0; r < 10; r++) {
+                if (Y == randomEnemy[r].Y)
                 {
-                    Console.SetCursorPosition(70, 15);
-                    Console.Beep(170, 200);
-                    //map.winScreen();
+                    if (X == randomEnemy[r].X)
+                    {
+                        Console.SetCursorPosition(70, 15);
+                        Console.Beep(170, 200);
+                        //map.winScreen();
 
-                    Y = PushBackY;
-                    X = PushBackX;
-                    statHud.horizontalEnemyStats = false;
-                    statHud.stillEnemyStats = false;
-                    statHud.enemyStats = true;
-                    randomEnemy.enemyTakeDamge = true;
+                        Y = PushBackY;
+                        X = PushBackX;
+                        statHud.horizontalEnemyStats = false;
+                        statHud.stillEnemyStats = false;
+                        statHud.enemyStats = true;
+                        randomEnemy[r].enemyTakeDamge = true;
+                    }
                 }
             }
             if (Y == horizontalEnemy.Y)
@@ -125,9 +128,9 @@ namespace Test_BasedRPGFirst
                     //map.winScreen();
                 }
             }
-            if (Y == stillEnemy.X)
+            if (Y == stillEnemy.Y)
             {
-                if (X == stillEnemy.Y)
+                if (X == stillEnemy.X)
                 {
                     Console.SetCursorPosition(70, 15);
                     Console.Beep(170, 200);
@@ -200,7 +203,7 @@ namespace Test_BasedRPGFirst
 
         }
                 // player takes damage depending on the enemy
-                private void TakeDamge(Enemy enemy, int damage, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy)
+                private void TakeDamge(Enemy enemy, int damage, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy,RandomEnemy randomEnemy)
                 {
 
                     if (shields == 0)
@@ -217,7 +220,7 @@ namespace Test_BasedRPGFirst
 
                         }
                     }
-                    if (enemy.EnemyDealDamage == true)
+                    if (randomEnemy.EnemyDealDamage == true)
                     {
                         if (shields > 0)
                         {

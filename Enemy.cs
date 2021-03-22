@@ -54,8 +54,8 @@ namespace Test_BasedRPGFirst
             enemyIcon = new string[] { "E" };
            // StillEnemyIcon = new string[] { "S" };
            // horizontalEnemyIcon = new string[] { ">","<" };
-            X = 20;
-            Y = 10;
+           // X = 20;
+            //Y/ = 10;
             //stillEnemyX = 56;
            // stillEnemyY = 8;
            // horizontalEnemyX = 1;
@@ -77,9 +77,12 @@ namespace Test_BasedRPGFirst
             DamageBoost = false;
 
         }
+
         // draws the enemies
-    public virtual void drawEnemy()
+    public virtual void drawEnemy(int X, int Y)
         {
+            this.X = X;
+            this.Y = Y;
             // checks if enemy is alive then draws
             if (enemyDead == false)
             {

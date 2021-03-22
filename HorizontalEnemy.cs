@@ -15,8 +15,10 @@ namespace Test_BasedRPGFirst
             Y = 4;
 
         }
-        public override void drawEnemy()
+        public override void drawEnemy(int X, int Y)
         {
+            X = this.X;
+            Y = this.Y;
             if (enemyDead == false)
             {
                 Console.SetCursorPosition(X, Y);

@@ -8,14 +8,17 @@ namespace Test_BasedRPGFirst
 {
     class StillEnemy : Enemy
     {
+        
         public StillEnemy()
         {
             enemyIcon = new string[] { "S" };
             X = 56;
             Y = 8;
         }
-        public override void drawEnemy()
+        public override void drawEnemy(int X, int Y)
         {
+            X = this.X;
+            Y = this.Y;
             if (enemyDead == false)
             {
                 Console.SetCursorPosition(X, Y);

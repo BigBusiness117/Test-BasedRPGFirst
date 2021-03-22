@@ -14,7 +14,17 @@ namespace Test_BasedRPGFirst
             Player player = new Player();
             Map map = new Map();
             Enemy enemy = new Enemy();
-            RandomEnemy randomEnemy = new RandomEnemy();
+            RandomEnemy[] randomEnemy = new RandomEnemy[10];
+            randomEnemy[0] = new RandomEnemy();
+            randomEnemy[1] = new RandomEnemy();
+            randomEnemy[2] = new RandomEnemy();
+            randomEnemy[3] = new RandomEnemy();
+            randomEnemy[4] = new RandomEnemy();
+            randomEnemy[5] = new RandomEnemy();
+            randomEnemy[6] = new RandomEnemy();
+            randomEnemy[7] = new RandomEnemy();
+            randomEnemy[8] = new RandomEnemy();
+            randomEnemy[9] = new RandomEnemy();
             HorizontalEnemy horizontalEnemy = new HorizontalEnemy();
             StillEnemy stillEnemy = new StillEnemy();
             StatHud statsHUD = new StatHud();
@@ -36,14 +46,15 @@ namespace Test_BasedRPGFirst
 
 
                 // draws the map 
-                map.DrawBorder();
+                map.DrawBorder(player);
                 // showsthe characters Stats
                 statsHUD.ShowHUD(player, enemy, healthPack[0]);
 
                 // draws the game objects
-                randomEnemy.drawEnemy();
-                horizontalEnemy.drawEnemy();
-                stillEnemy.drawEnemy();
+                randomEnemy[0].drawEnemy(10,2);
+    
+                horizontalEnemy.drawEnemy(1,4);
+                stillEnemy.drawEnemy(56,8);
                // enemy.drawhorizontalEnemy();
                // enemy.StilldrawEnemy();
                 healthPack[1].Draw();
@@ -55,7 +66,7 @@ namespace Test_BasedRPGFirst
                 armor.Draw();
                 player.drawPlayer(enemy);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
                 //moves the player
-                player.movePlayer(enemy, map, horizontalEnemy,stillEnemy);  
+                player.movePlayer(enemy, map, horizontalEnemy,stillEnemy,randomEnemy);  
 
                 // checks if player had any collision
                 if (player.playerMoving == true)
@@ -67,13 +78,21 @@ namespace Test_BasedRPGFirst
 
 
                 //moves the enemies
-                randomEnemy.enemyMove(map, player);
+                randomEnemy[0].enemyMove(map, player);
+               
                 horizontalEnemy.enemyMove(map, player);
                 stillEnemy.enemyMove(map, player);
                 //enemy.horizontalEnemyMove(map, player);
                // enemy.stillEnemyMove(map, player);
                 // check to see if enemy hit player
-                if (randomEnemy.enemyDead == false) { randomEnemy.CheckAllPlayer(player); }
+                if (randomEnemy[0].enemyDead == false) { randomEnemy[0].CheckAllPlayer(player); }
+                //if (randomEnemy[1].enemyDead == false) { randomEnemy[1].CheckAllPlayer(player); }
+                //if (randomEnemy[2].enemyDead == false) { randomEnemy[2].CheckAllPlayer(player); }
+                //if (randomEnemy[3].enemyDead == false) { randomEnemy[3].CheckAllPlayer(player); }
+               // if (randomEnemy[4].enemyDead == false) { randomEnemy[4].CheckAllPlayer(player); }
+                //if (randomEnemy[5].enemyDead == false) { randomEnemy[5].CheckAllPlayer(player); }
+                //if (randomEnemy[6].enemyDead == false) { randomEnemy[6].CheckAllPlayer(player); }
+                //if (randomEnemy[7].enemyDead == false) { randomEnemy[7].CheckAllPlayer(player); }
                 if (horizontalEnemy.enemyDead == false) { horizontalEnemy.CheckAllPlayer(player); }
                 if (stillEnemy.enemyDead == false) { stillEnemy.CheckAllPlayer(player); }
                 //if (enemy.horizontalEnemyDead == false) { enemy.CheckhorizontalEnemy(player); }

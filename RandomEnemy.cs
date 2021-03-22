@@ -8,11 +8,15 @@ namespace Test_BasedRPGFirst
 {
     class RandomEnemy:Enemy
     {
+        private bool curpos;
         public RandomEnemy()
         {
+            X = 3;
+            Y = 1;
             enemyIcon = new string[] { "R" };
-            X = 20;
-            Y = 10;
+            curpos = true;
+
+            
             enemyDead = false;
             enemymoving = true;
             EnemyDealDamage = false;
@@ -20,12 +24,19 @@ namespace Test_BasedRPGFirst
             DamageBoost = false;
         }
 
-        public override void drawEnemy()
+        public override void drawEnemy(int X, int Y)
         {
+            if (curpos)
+            {
+                this.X = X;
+                this.Y = Y;
+                curpos = false;
+            }
+
             // checks if enemy is alive then draws
             if (enemyDead == false)
             {
-                Console.SetCursorPosition(X, Y);
+                Console.SetCursorPosition(this.X, this.Y);
                 Console.Write(enemyIcon[0]);
             }
 
