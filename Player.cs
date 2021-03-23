@@ -50,7 +50,8 @@ namespace Test_BasedRPGFirst
                 //if (enemy.StillDealDamage == true) { TakeDamge(enemy, 10); }
                 for (int d = 0; d < 10; d++)
                 {
-                    if (randomEnemy[d].EnemyDealDamage == true || horizontalEnemy.EnemyDealDamage == true || stillEnemy.EnemyDealDamage == true) { TakeDamge(enemy, 25, horizontalEnemy, stillEnemy, randomEnemy[d]); }
+                    if (randomEnemy[d].EnemyDealDamage == true || horizontalEnemy.EnemyDealDamage == true || stillEnemy.EnemyDealDamage == true) 
+                    { TakeDamge(enemy, 0, horizontalEnemy, stillEnemy, randomEnemy[d]); }
                 }
                 PushBackX = X;
                 PushBackY = Y;
@@ -167,25 +168,25 @@ namespace Test_BasedRPGFirst
                     }
                 }
             }
-                    if (Y == armor.Y)
+            if (Y == armor.Y)
+            {
+                if (X == armor.X)
+                {
+                    Console.SetCursorPosition(70, 15);
+                    Console.WriteLine("tryx" + X);
+                    if (armor.Used == false)
                     {
-                        if (X == armor.X)
+                        shields += 50;
+                        if (shields >= 100)
                         {
-                            Console.SetCursorPosition(70, 15);
-                            Console.WriteLine("tryx" + X);
-                            if (armor.Used == false)
-                            {
-                                shields += 50;
-                                if (shields >= 100)
-                                {
-                                    shields = 100;
-                                }
-                                armor.X = 0;
-                                armor.Y = 0;
-                                armor.Used = true;
-                            }
+                            shields = 100;
                         }
+                        armor.X = 0;
+                        armor.Y = 0;
+                        armor.Used = true;
                     }
+                }
+            }
                     if (Y == powerUp.Y)
                     {
                         if (X == powerUp.X)
@@ -203,15 +204,26 @@ namespace Test_BasedRPGFirst
 
         }
                 // player takes damage depending on the enemy
-                private void TakeDamge(Enemy enemy, int damage, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy,RandomEnemy randomEnemy)
+            private void TakeDamge(Enemy enemy, int damage, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy,RandomEnemy randomEnemy)
+            {
+                if(horizontalEnemy.EnemyDealDamage == true)
+                {
+                    damage = 50;
+                }
+                if (randomEnemy.EnemyDealDamage == true)
+                {
+                        damage = 1;
+                }
+                if (stillEnemy.EnemyDealDamage == true)
+                {
+                    damage = 1;
+                }
+                if (shields == 0)
                 {
 
-                    if (shields == 0)
-                    {
+                    health -= damage;
 
-                        health -= damage;
-
-                    }
+                }
                     if (horizontalEnemy.EnemyDealDamage == true)
                     {
                         if (shields > 0)
@@ -219,6 +231,7 @@ namespace Test_BasedRPGFirst
                             shields = shields - damage;
 
                         }
+                horizontalEnemy.EnemyDealDamage = false;
                     }
                     if (randomEnemy.EnemyDealDamage == true)
                     {
@@ -234,6 +247,7 @@ namespace Test_BasedRPGFirst
                         {
                             shields = shields - damage;
                         }
+                stillEnemy.EnemyDealDamage = false;
                     }
                     if (shields > 0)
                     {

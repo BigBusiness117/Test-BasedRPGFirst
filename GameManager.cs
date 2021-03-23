@@ -93,8 +93,8 @@ namespace Test_BasedRPGFirst
                 //if (randomEnemy[5].enemyDead == false) { randomEnemy[5].CheckAllPlayer(player); }
                 //if (randomEnemy[6].enemyDead == false) { randomEnemy[6].CheckAllPlayer(player); }
                 //if (randomEnemy[7].enemyDead == false) { randomEnemy[7].CheckAllPlayer(player); }
-                if (horizontalEnemy.enemyDead == false) { horizontalEnemy.CheckAllPlayer(player); }
-                if (stillEnemy.enemyDead == false) { stillEnemy.CheckAllPlayer(player); }
+                 if (horizontalEnemy.enemyDead == false) { horizontalEnemy.CheckAllPlayer(player); }
+                 if (stillEnemy.enemyDead == false) { stillEnemy.CheckAllPlayer(player); }
                 //if (enemy.horizontalEnemyDead == false) { enemy.CheckhorizontalEnemy(player); }
                // if (enemy.stillEnemyDead == false) { enemy.CheckStillEnemy(player); }
 

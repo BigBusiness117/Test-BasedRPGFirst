@@ -32,10 +32,10 @@ namespace Test_BasedRPGFirst
         {
             if(player.X >= 58)
             {
-                
+                //hiding for now
 
-                camera++;
-                mCamera++;
+               // camera++;
+               // mCamera++;
             }
             // gets the map from a text file and then convert the map string[] to a 2d char array
             worldMap = File.ReadAllLines("map.txt");        // holds the story text

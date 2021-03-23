@@ -27,13 +27,14 @@ namespace Test_BasedRPGFirst
         }
         public override void enemyMove(Map map, Player player)
         {
+                TakeDamge(25);
+                EnemyDealDamage = false;
               enemyPushBackX = X;
               enemyPushBackY = Y;
             //if enemy is dead then stops moving
                if (enemyDead == false)
               {
             // takes damage if conditions are met
-                 TakeDamge(25);
             // moves the enemy
                  if (Y - 2 == player.Y && X == player.X || Y - 1 == player.Y && X == player.X)
                {
@@ -55,7 +56,6 @@ namespace Test_BasedRPGFirst
             
                      X = X + 1;
                }
-                EnemyDealDamage = false;
 
                }
 
