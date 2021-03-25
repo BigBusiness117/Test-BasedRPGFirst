@@ -16,8 +16,9 @@ namespace Test_BasedRPGFirst
         public bool enemyAlive;
         public int X;
         public int Y;
-
-      public GameCharacter()
+        public bool curpos;
+        
+        public GameCharacter()
         {
             playerAlive = true;
             enemyAlive = true;

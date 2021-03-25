@@ -8,7 +8,7 @@ namespace Test_BasedRPGFirst
 {
     class RandomEnemy:Enemy
     {
-        private bool curpos;
+        
         public RandomEnemy()
         {
             X = 3;

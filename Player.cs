@@ -39,7 +39,7 @@ namespace Test_BasedRPGFirst
             }
         }
         // move player
-        public void movePlayer(Enemy enemy, Map map, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy, RandomEnemy[] randomEnemy)
+        public void movePlayer(Enemy enemy, Map map, HorizontalEnemy[] horizontalEnemy, StillEnemy stillEnemy, RandomEnemy[] randomEnemy)
         {
             ConsoleKeyInfo input;
             input = Console.ReadKey(true);
@@ -50,8 +50,8 @@ namespace Test_BasedRPGFirst
                 //if (enemy.StillDealDamage == true) { TakeDamge(enemy, 10); }
                 for (int d = 0; d < 10; d++)
                 {
-                    if (randomEnemy[d].EnemyDealDamage == true || horizontalEnemy.EnemyDealDamage == true || stillEnemy.EnemyDealDamage == true) 
-                    { TakeDamge(enemy, 0, horizontalEnemy, stillEnemy, randomEnemy[d]); }
+                    if (randomEnemy[d].EnemyDealDamage == true || horizontalEnemy[d].EnemyDealDamage == true || stillEnemy.EnemyDealDamage == true) 
+                    { TakeDamge(enemy, 0, horizontalEnemy[d], stillEnemy, randomEnemy[d]); }
                 }
                 PushBackX = X;
                 PushBackY = Y;
@@ -94,7 +94,7 @@ namespace Test_BasedRPGFirst
 
         }
         // checks to see if player colided with any game objects 
-        public void CheckCollision(Enemy enemy, StatHud statHud, Items[] healthPack, Items powerUp, Items armor, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy,RandomEnemy[] randomEnemy)
+        public void CheckCollision(Enemy enemy, StatHud statHud, Items[] healthPack, Items powerUp, Items armor, HorizontalEnemy[] horizontalEnemy, StillEnemy stillEnemy,RandomEnemy[] randomEnemy)
         {
             for (int r = 0; r < 10; r++) {
                 if (Y == randomEnemy[r].Y)
@@ -114,19 +114,22 @@ namespace Test_BasedRPGFirst
                     }
                 }
             }
-            if (Y == horizontalEnemy.Y)
+            for (int h = 0; h < 10; h++)
             {
-                if (X == horizontalEnemy.X)
+                if (Y == horizontalEnemy[h].Y)
                 {
-                    Console.SetCursorPosition(70, 15);
-                    Console.WriteLine("You Have Killed horizontal enemy");
-                    Y = PushBackY;
-                    X = PushBackX;
-                    horizontalEnemy.enemyTakeDamge = true;
-                    statHud.stillEnemyStats = false;
-                    statHud.enemyStats = false;
-                    statHud.horizontalEnemyStats = true;
-                    //map.winScreen();
+                    if (X == horizontalEnemy[h].X)
+                    {
+                        Console.SetCursorPosition(70, 15);
+                        Console.WriteLine("You Have Killed horizontal enemy");
+                        Y = PushBackY;
+                        X = PushBackX;
+                        horizontalEnemy[h].enemyTakeDamge = true;
+                        statHud.stillEnemyStats = false;
+                        statHud.enemyStats = false;
+                        statHud.horizontalEnemyStats = true;
+                        //map.winScreen();
+                    }
                 }
             }
             if (Y == stillEnemy.Y)

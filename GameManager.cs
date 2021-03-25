@@ -14,6 +14,8 @@ namespace Test_BasedRPGFirst
             Player player = new Player();
             Map map = new Map();
             Enemy enemy = new Enemy();
+            Boss boss = new Boss();
+            EnemyManager enemyManager = new EnemyManager();
             RandomEnemy[] randomEnemy = new RandomEnemy[10];
             randomEnemy[0] = new RandomEnemy();
             randomEnemy[1] = new RandomEnemy();
@@ -25,7 +27,17 @@ namespace Test_BasedRPGFirst
             randomEnemy[7] = new RandomEnemy();
             randomEnemy[8] = new RandomEnemy();
             randomEnemy[9] = new RandomEnemy();
-            HorizontalEnemy horizontalEnemy = new HorizontalEnemy();
+            //HorizontalEnemy[] horizontalEnemy = new HorizontalEnemy[10];
+            enemyManager.horizontalEnemy[0] = new HorizontalEnemy(100);
+            enemyManager.horizontalEnemy[1] = new HorizontalEnemy(25);
+            enemyManager.horizontalEnemy[2] = new HorizontalEnemy(25);
+            enemyManager.horizontalEnemy[3] = new HorizontalEnemy(25);
+            enemyManager.horizontalEnemy[4] = new HorizontalEnemy(25);
+            enemyManager.horizontalEnemy[5] = new HorizontalEnemy(25);
+            enemyManager.horizontalEnemy[6] = new HorizontalEnemy(25);
+            enemyManager.horizontalEnemy[7] = new HorizontalEnemy(25);
+            enemyManager.horizontalEnemy[8] = new HorizontalEnemy(25);
+            enemyManager.horizontalEnemy[9] = new HorizontalEnemy(25);
             StillEnemy stillEnemy = new StillEnemy();
             StatHud statsHUD = new StatHud();
             Items[] healthPack = new Items[5];
@@ -52,8 +64,13 @@ namespace Test_BasedRPGFirst
 
                 // draws the game objects
                 randomEnemy[0].drawEnemy(10,2);
-    
-                horizontalEnemy.drawEnemy(1,4);
+                boss.drawEnemy(20,2);
+                enemyManager.horizontalEnemy[0].drawEnemy(1,4);
+                if (boss.sendEnemy)
+                {
+                    enemyManager.horizontalEnemy[boss.enemyCount].drawEnemy(boss.X, boss.Y);
+
+                }
                 stillEnemy.drawEnemy(56,8);
                // enemy.drawhorizontalEnemy();
                // enemy.StilldrawEnemy();
@@ -66,12 +83,12 @@ namespace Test_BasedRPGFirst
                 armor.Draw();
                 player.drawPlayer(enemy);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
                 //moves the player
-                player.movePlayer(enemy, map, horizontalEnemy,stillEnemy,randomEnemy);  
+                player.movePlayer(enemy, map, enemyManager.horizontalEnemy,stillEnemy,randomEnemy);  
 
                 // checks if player had any collision
                 if (player.playerMoving == true)
                 {
-                    player.CheckCollision(enemy,statsHUD,healthPack, powerUp,armor, horizontalEnemy,stillEnemy,randomEnemy);
+                    player.CheckCollision(enemy,statsHUD,healthPack, powerUp,armor, enemyManager.horizontalEnemy,stillEnemy,randomEnemy);
                 }
 
                 
@@ -79,8 +96,22 @@ namespace Test_BasedRPGFirst
 
                 //moves the enemies
                 randomEnemy[0].enemyMove(map, player);
-               
-                horizontalEnemy.enemyMove(map, player);
+                boss.enemyMove(enemyManager.horizontalEnemy, map,player);
+                enemyManager.horizontalEnemy[0].enemyMove(map, player);
+                enemyManager.horizontalEnemy[1].enemyMove(map, player);
+                enemyManager.horizontalEnemy[2].enemyMove(map, player);
+                enemyManager.horizontalEnemy[3].enemyMove(map, player);
+                enemyManager.horizontalEnemy[4].enemyMove(map, player);
+                enemyManager.horizontalEnemy[5].enemyMove(map, player);
+                enemyManager.horizontalEnemy[6].enemyMove(map, player);
+                enemyManager.horizontalEnemy[7].enemyMove(map, player);
+                enemyManager.horizontalEnemy[8].enemyMove(map, player);
+                enemyManager.horizontalEnemy[9].enemyMove(map, player);
+                for (int b = 1; b < boss.enemyCount; b++)
+                {
+                    enemyManager.horizontalEnemy[b].enemyMove(map, player);
+                }
+                
                 stillEnemy.enemyMove(map, player);
                 //enemy.horizontalEnemyMove(map, player);
                // enemy.stillEnemyMove(map, player);
@@ -93,7 +124,8 @@ namespace Test_BasedRPGFirst
                 //if (randomEnemy[5].enemyDead == false) { randomEnemy[5].CheckAllPlayer(player); }
                 //if (randomEnemy[6].enemyDead == false) { randomEnemy[6].CheckAllPlayer(player); }
                 //if (randomEnemy[7].enemyDead == false) { randomEnemy[7].CheckAllPlayer(player); }
-                 if (horizontalEnemy.enemyDead == false) { horizontalEnemy.CheckAllPlayer(player); }
+                 if (enemyManager.horizontalEnemy[0].enemyDead == false) { enemyManager.horizontalEnemy[0].CheckAllPlayer(player); }
+                if (enemyManager.horizontalEnemy[1].enemyDead == false) { enemyManager.horizontalEnemy[1].CheckAllPlayer(player); }
                  if (stillEnemy.enemyDead == false) { stillEnemy.CheckAllPlayer(player); }
                 //if (enemy.horizontalEnemyDead == false) { enemy.CheckhorizontalEnemy(player); }
                // if (enemy.stillEnemyDead == false) { enemy.CheckStillEnemy(player); }

@@ -8,20 +8,27 @@ namespace Test_BasedRPGFirst
 {
     class HorizontalEnemy : Enemy
     {
-        public HorizontalEnemy()
+        public HorizontalEnemy(int health)
         {
+            this.health = health;
             enemyIcon = new string[] { ">", "<" };
             X = 1;
             Y = 4;
+            curpos = true;
 
         }
         public override void drawEnemy(int X, int Y)
         {
-            X = this.X;
-            Y = this.Y;
+            
+            if (curpos)
+            {
+                this.X = X;
+                this.Y = Y;
+                curpos = false;
+            }
             if (enemyDead == false)
             {
-                Console.SetCursorPosition(X, Y);
+                Console.SetCursorPosition(this.X, this.Y);
                 if (movingLeft == true)
                 {
                     Console.Write(enemyIcon[1]);
