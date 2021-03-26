@@ -31,11 +31,11 @@ namespace Test_BasedRPGFirst
         //public int count;
 
         // checks to see if enemy is moving
-        public bool enemymoving;
+        protected bool enemymoving;
         // check if enemy is dead
         public bool enemyDead;
         // checks if Horizontalenemy is moving left
-        public bool movingLeft = true;
+        protected bool movingLeft = true;
        // public bool horizontalEnemyDead;
       //  public bool stillEnemyDead;
         // check to see if enemy deals damage to player
@@ -91,89 +91,6 @@ namespace Test_BasedRPGFirst
             }
             
         }
-       // public void StilldrawEnemy()
-      //  {
-      //      if (stillEnemyDead == false)
-      //      {
-       //         Console.SetCursorPosition(stillEnemyX, stillEnemyY);
-      //          Console.Write(StillEnemyIcon[0]);
-      //      }
-      //
-      //  }
-      //  public void drawhorizontalEnemy()
-      //  {
-     //       if (horizontalEnemyDead == false)
-      //      {
-     //           Console.SetCursorPosition(horizontalEnemyX, horizontalEnemyY);
-     //           if (movingLeft == true)
-      //          {
-      //              Console.Write(horizontalEnemyIcon[1]);
-      ///          }
-      //          if (movingLeft == false)
-       //         {
-       //             Console.Write(horizontalEnemyIcon[0]);
-       //         }
-       //     }
-      //  }
-        // move the enemy if the player 1 or 2 blocks away in the x and y position
-      //  public void stillEnemyMove(Map map, Player player)
-     //   {
-          //  StillEnemyPushBackX = stillEnemyX;
-          //  StillEnemyPushBackY = stillEnemyY;
-            //if enemy is dead then stops moving
-         //   if (stillEnemyDead == false)
-         //   {
-                // takes damage if conditions are met
-           //     TakeDamge(25);
-                // moves the enemy
-           //     if (stillEnemyY - 2 == player.playerY && stillEnemyX == player.playerX || stillEnemyY - 1 == player.playerY && stillEnemyX == player.playerX)
-            //    {
-
-            //        stillEnemyY = stillEnemyY - 1;
-             //   }
-             //   if (stillEnemyY + 2 == player.playerY && stillEnemyX == player.playerX || stillEnemyY + 1 == player.playerY && stillEnemyX == player.playerX)
-             //   {
-             //
-             //       stillEnemyY = stillEnemyY + 1;
-              //  }
-            //   if (stillEnemyY == player.playerY && stillEnemyX - 2 == player.playerX || stillEnemyY == player.playerY && stillEnemyX - 1 == player.playerX)
-             //   {
-
-             //       stillEnemyX = stillEnemyX - 1;
-             //   }
-             //   if (stillEnemyY == player.playerY && stillEnemyX + 2 == player.playerX || stillEnemyY == player.playerY && stillEnemyX + 1 == player.playerX)
-            //    {
-        //
-           //         stillEnemyX = stillEnemyX + 1;
-           //     }
-          //  }
-      //  }
-            // moves the enemy
-          //  public void horizontalEnemyMove(Map map, Player player)
-          //  {
-          //      TakeDamge(25);
-
-           //     if (horizontalEnemyDead == false)
-           //     {
-             //       if (map.displayMap[horizontalEnemyX - 1, horizontalEnemyY] == 'x')
-             //       {
-             //           movingLeft = false;
-              //      }
-              //      if (movingLeft == false)
-               //     {
-               //         horizontalEnemyX++;
-              //      }
-               //     if (map.displayMap[horizontalEnemyX , horizontalEnemyY] == 'x')
-              //      {
-                //        movingLeft = true;
-                //    }
-                //    if (movingLeft == true)
-               //     {
-               //         horizontalEnemyX--;
-              //      }
-              //  }
-           // }
-            // moves the  in randomly
             public virtual void enemyMove(Map map, Player player)
             {
                 TakeDamge(25);

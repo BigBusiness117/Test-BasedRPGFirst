@@ -22,15 +22,15 @@ namespace Test_BasedRPGFirst
         // shows the hud
     public void ShowHUD(Player player, Enemy enemy, Items healthPack)
     {
-            Console.SetCursorPosition(65, 5);
+            Console.SetCursorPosition(65, 27);
 
             Console.WriteLine(" Health: " + player.health + " shields: "+ player.shields + " PLX: " + player.X + " PLY " + player.Y + " HLX: " + healthPack.X + " HLY " + healthPack.Y);
             if(enemy.DamageBoost == true)
             {
-                Console.SetCursorPosition(90, 5);
+                Console.SetCursorPosition(90, 27);
                 Console.Write(" DamageBoost: 2x");
             }
-            Console.SetCursorPosition(65, 6);
+            Console.SetCursorPosition(65, 31);
 
             if (enemyStats == true)
             {
@@ -44,9 +44,9 @@ namespace Test_BasedRPGFirst
             {
              //   Console.Write(" StillEnemy Health: " + enemy.StillHealth);
             }
-            Console.SetCursorPosition(0, 16);
+            Console.SetCursorPosition(0, 26);
             Console.WriteLine(" E = Enemy: " + " @ = Player: " + " <,> = HorizontalEnemy: " + " S = StillEnemy: ");
-            Console.SetCursorPosition(0, 17);
+            Console.SetCursorPosition(0, 27);
             Console.WriteLine(" P = PowerUp: " + " H = HealthPack: " + " A = Armor: ");
         }
 

@@ -18,7 +18,7 @@ namespace Test_BasedRPGFirst
             enemyIcon = new string[] { "B" };
             sendEnemy = false;
             enemyCount = 0;
-
+            curpos = true;
             enemyDead = false;
             enemymoving = true;
             EnemyDealDamage = false;
@@ -27,11 +27,18 @@ namespace Test_BasedRPGFirst
         }
         public override void drawEnemy(int X, int Y)
         {
-            X = this.X;
-            Y = this.Y;
-            Console.SetCursorPosition(X, Y);
+            if (curpos)
+            {
+                this.X = X;
+                this.Y = Y;
+                curpos = false;
+            }
+            if (enemyDead == false)
+            {
+                Console.SetCursorPosition(this.X, this.Y);
 
-            Console.Write(enemyIcon[0]);
+                Console.Write(enemyIcon[0]);
+            }
         }
         public  void enemyMove(HorizontalEnemy[] horizontalEnemy, Map map, Player player)
         {
@@ -42,9 +49,11 @@ namespace Test_BasedRPGFirst
                 if (Y - 2 == player.Y && X == player.X || Y - 1 == player.Y && X == player.X)
                 {
                     sendEnemy = true;
-                    enemyCount++;
-                    Console.SetCursorPosition(0, 18);
-                    Console.WriteLine("no no no");
+                    if (enemyCount < 9)
+                    {
+                        enemyCount++;
+                    }
+                    
 
                     SendEnemy(horizontalEnemy, map, player);
                     Console.ReadKey();
@@ -53,9 +62,11 @@ namespace Test_BasedRPGFirst
                 {
                     sendEnemy = true;
                     SendEnemy(horizontalEnemy, map, player);
-                    Console.WriteLine("no no no");
-                    Console.ReadKey();
-                    enemyCount++;
+                    
+                    if (enemyCount < 9)
+                    {
+                        enemyCount++;
+                    }
 
 
                 }
@@ -63,9 +74,11 @@ namespace Test_BasedRPGFirst
                 {
                     sendEnemy = true;
                     SendEnemy(horizontalEnemy, map, player);
-                    Console.WriteLine("no no no");
-                    Console.ReadKey();
-                    enemyCount++;
+                  
+                    if (enemyCount < 9)
+                    {
+                        enemyCount++;
+                    }
 
 
                 }
@@ -74,9 +87,11 @@ namespace Test_BasedRPGFirst
                     sendEnemy = true;
 
                     SendEnemy(horizontalEnemy, map, player);
-                    Console.WriteLine("no no no");
-                    Console.ReadKey();
-                    enemyCount++;
+                 
+                    if (enemyCount < 9)
+                    {
+                        enemyCount++;
+                    }
 
                 }
 
@@ -84,9 +99,13 @@ namespace Test_BasedRPGFirst
 
             if (enemymoving)
                 {
-                    //count = 0;
-                    // move the enemy depending n the random number
-                    if (randomNum == 1)
+                TakeDamge(25);
+                EnemyDealDamage = false;
+                enemyPushBackX = X;
+                enemyPushBackY = Y;
+                //count = 0;
+                // move the enemy depending n the random number
+                if (randomNum == 1)
                     {
 
 
@@ -109,6 +128,26 @@ namespace Test_BasedRPGFirst
         {
             //horizontalEnemy[3].drawEnemy(X, Y);
            // horizontalEnemy[3].enemyMove(map,player);
+        }
+        public override void CheckAllPlayer(Player player)
+        {
+            if (player.Y == Y)
+            {
+                if (player.X == X)
+                {
+                    // deals damge to the player and push enemy back to its spot
+                    Console.SetCursorPosition(40, 15);
+                    Console.Beep(170, 200);
+                    Console.WriteLine("You Have Killed Player");
+                    EnemyDealDamage = true;
+                    X = enemyPushBackX;
+                    Y = enemyPushBackY;
+
+                    //map.winScreen();
+
+                }
+            }
+
         }
     }
 }

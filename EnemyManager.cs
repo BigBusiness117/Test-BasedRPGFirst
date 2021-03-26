@@ -11,8 +11,9 @@ namespace Test_BasedRPGFirst
         
             public HorizontalEnemy[] horizontalEnemy = new HorizontalEnemy[10];
             protected StillEnemy stillEnemy = new StillEnemy();
+            public Enemy enemy = new Enemy();
+            public Boss boss = new Boss();
 
-            
 
 
     }

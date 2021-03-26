@@ -39,7 +39,7 @@ namespace Test_BasedRPGFirst
             }
         }
         // move player
-        public void movePlayer(Enemy enemy, Map map, HorizontalEnemy[] horizontalEnemy, StillEnemy stillEnemy, RandomEnemy[] randomEnemy)
+        public void movePlayer(Enemy enemy, Map map, HorizontalEnemy[] horizontalEnemy, StillEnemy stillEnemy, RandomEnemy[] randomEnemy,Boss boss)
         {
             ConsoleKeyInfo input;
             input = Console.ReadKey(true);
@@ -51,7 +51,7 @@ namespace Test_BasedRPGFirst
                 for (int d = 0; d < 10; d++)
                 {
                     if (randomEnemy[d].EnemyDealDamage == true || horizontalEnemy[d].EnemyDealDamage == true || stillEnemy.EnemyDealDamage == true) 
-                    { TakeDamge(enemy, 0, horizontalEnemy[d], stillEnemy, randomEnemy[d]); }
+                    { TakeDamge(enemy, 0, horizontalEnemy[d], stillEnemy, randomEnemy[d],boss); }
                 }
                 PushBackX = X;
                 PushBackY = Y;
@@ -94,7 +94,7 @@ namespace Test_BasedRPGFirst
 
         }
         // checks to see if player colided with any game objects 
-        public void CheckCollision(Enemy enemy, StatHud statHud, Items[] healthPack, Items powerUp, Items armor, HorizontalEnemy[] horizontalEnemy, StillEnemy stillEnemy,RandomEnemy[] randomEnemy)
+        public void CheckCollision(Enemy enemy, StatHud statHud, Items[] healthPack, Items powerUp, Items armor, HorizontalEnemy[] horizontalEnemy, StillEnemy stillEnemy,RandomEnemy[] randomEnemy,Boss boss)
         {
             for (int r = 0; r < 10; r++) {
                 if (Y == randomEnemy[r].Y)
@@ -121,7 +121,6 @@ namespace Test_BasedRPGFirst
                     if (X == horizontalEnemy[h].X)
                     {
                         Console.SetCursorPosition(70, 15);
-                        Console.WriteLine("You Have Killed horizontal enemy");
                         Y = PushBackY;
                         X = PushBackX;
                         horizontalEnemy[h].enemyTakeDamge = true;
@@ -140,11 +139,25 @@ namespace Test_BasedRPGFirst
                     Console.Beep(170, 200);
                     Y = PushBackY;
                     X = PushBackX;
-                    Console.WriteLine("You Have Killed still enemy");
                     stillEnemy.enemyTakeDamge = true;
                     statHud.horizontalEnemyStats = false;
                     statHud.enemyStats = false;
                     statHud.stillEnemyStats = true;
+
+                }
+            }
+            if (Y == boss.Y)
+            {
+                if (X == boss.X)
+                {
+                    Console.SetCursorPosition(70, 15);
+                    Console.Beep(170, 200);
+                    Y = PushBackY;
+                    X = PushBackX;
+                    boss.enemyTakeDamge = true;
+                    statHud.horizontalEnemyStats = false;
+                    statHud.enemyStats = false;
+                    statHud.stillEnemyStats = false;
 
                 }
             }
@@ -207,7 +220,7 @@ namespace Test_BasedRPGFirst
 
         }
                 // player takes damage depending on the enemy
-            private void TakeDamge(Enemy enemy, int damage, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy,RandomEnemy randomEnemy)
+            private void TakeDamge(Enemy enemy, int damage, HorizontalEnemy horizontalEnemy, StillEnemy stillEnemy,RandomEnemy randomEnemy,Boss boss)
             {
                 if(horizontalEnemy.EnemyDealDamage == true)
                 {
@@ -215,13 +228,17 @@ namespace Test_BasedRPGFirst
                 }
                 if (randomEnemy.EnemyDealDamage == true)
                 {
-                        damage = 1;
+                        damage = 10;
                 }
                 if (stillEnemy.EnemyDealDamage == true)
                 {
-                    damage = 1;
+                    damage = 10;
                 }
-                if (shields == 0)
+            if (boss.EnemyDealDamage == true)
+            {
+                damage = 15;
+            }
+            if (shields == 0)
                 {
 
                     health -= damage;
@@ -252,7 +269,15 @@ namespace Test_BasedRPGFirst
                         }
                 stillEnemy.EnemyDealDamage = false;
                     }
-                    if (shields > 0)
+            if (boss.EnemyDealDamage == true)
+            {
+                if (shields > 0)
+                {
+                    shields = shields - damage;
+                }
+            }
+                boss.EnemyDealDamage = false;
+                if (shields > 0)
                     {
                         remainingShields -= damage;
                     }
